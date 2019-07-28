@@ -38,7 +38,7 @@ usersRouter.post('',[
             res.sendStatus(400);
         } else {
             user.id = id;
-            res.status(201); // created status code
+            res.status(201); 
             res.json(user);
         }
     }
@@ -50,14 +50,8 @@ usersRouter.post('',[
  */
 usersRouter.patch('', [
     authMiddleware(1, 2),async (req, res) => {
-    // const userId = req.body.id;
-    // const currentLoggedInUser = req.session.user;
-    // if (currentLoggedInUser && currentLoggedInUser.id === userId) {
         const updatedUser = await userDao.update(req.body);
         res.json(updatedUser);
-    // } else {
-    //     res.sendStatus(403);
-    // }
 }]);
 
 /**
@@ -65,6 +59,5 @@ usersRouter.patch('', [
  * delete user by id
  */
 usersRouter.delete('/:id', (req, res) => {
-    // userDao.deleteUser(+req.params.id);
     res.end();
 });

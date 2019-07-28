@@ -11,7 +11,6 @@ export async function findAll() {
         client = await connectionPool.connect(); 
 
         const result = await client.query('SELECT * FROM users left join role using (role_id)');
-        // convert result from sql object to js object
         return result.rows.map(convertUser);
     } catch (err) {
         console.log(err);
@@ -66,7 +65,7 @@ export async function findByUsernameAndPassword(username: string, password: stri
                 WHERE username = $1 AND pass = $2
         `;
         const result = await client.query(queryString, [username, password]);
-        const sqlUser = result.rows[0]; // there should really only be 1 row at best
+        const sqlUser = result.rows[0]; 
         return sqlUser && convertUser(sqlUser);
     } catch (err) {
         console.log(err);
@@ -79,7 +78,7 @@ export async function findByUsernameAndPassword(username: string, password: stri
 export async function save(user: User) {
     let client: PoolClient;
     try {
-        client = await connectionPool.connect(); // basically .then is everything after this
+        client = await connectionPool.connect(); 
         const queryString = `
             INSERT INTO users (username, pass, first_name, last_name, email, role_id)
             VALUES 	($1, $2, $3, $4, $5, $6, $7)
@@ -110,7 +109,7 @@ export async function update(user: User) {
     console.log(user);
     let client: PoolClient;
     try {
-        client = await connectionPool.connect(); // basically .then is everything after this
+        client = await connectionPool.connect(); 
         const queryString = `
             UPDATE users SET username = $1, pass = $2, first_name = $3, last_name = $4,email = $5, role_id = $6
             WHERE user_id = $7

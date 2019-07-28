@@ -14,7 +14,6 @@ export const authMiddleware = (...role) => (req, res, next) => {
         }
     } else {
         // 401 is Unauthorized which really means Unauthenticated
-        // they don't have access because we don't know who they are
         res.sendStatus(401);
     }
 };

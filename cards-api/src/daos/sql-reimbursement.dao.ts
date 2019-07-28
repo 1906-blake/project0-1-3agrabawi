@@ -8,7 +8,7 @@ export async function findAll() {
     console.log('finding all reimbursements');
     let client: PoolClient;
     try {
-        client = await connectionPool.connect(); // basically .then is everything after this
+        client = await connectionPool.connect(); 
 
         const result = await client.query(`select * from reimbursement r
 		inner join type t on (r.type = t.type_id)
@@ -16,8 +16,6 @@ export async function findAll() {
         inner join users n on (r.author = n.user_id)
         left join resolver_view q on (r.resolver = q.r_user_id)
         `);
-
-        // convert result from sql object to js object
         return result.rows.map(convertReimbursement);
     } catch (err) {
         console.log(err);
@@ -142,11 +140,6 @@ export async function updateReimbursement(reimbursement: Partial<Reimbursement>)
         WHERE reimbursement_id = $9
                 RETURNING *
         `;
-        // const result = await client.query(queryString,
-        //     [reimbursement.amount, reimbursement.author.userId, reimbursement.resolver && reimbursement.resolver.userId,
-        //     reimbursement.dateSubmitted, reimbursement.dateResolved, reimbursement.description, reimbursement.status.statusId,
-        //     reimbursement.type && reimbursement.type.typeId, reimbursement.reimbursementId]);
-
         const params = [reimbursement.author, reimbursement.amount, reimbursement.dateSubmitted, reimbursement.dateResolved, reimbursement.description, reimbursement.resolver, reimbursement.status, reimbursement.type, reimbursement.reimbursementId];
         const result = await client.query(queryString, params);
 

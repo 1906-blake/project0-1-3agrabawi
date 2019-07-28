@@ -35,15 +35,6 @@ reimbursementsRouter.get('/status/:statusId', [
  * /reimbursements/author/:userId
  * find all reimbursements based off users id
  */
-// reimbursementsRouter.get('/author/userId/:id', [
-//     authMiddleware(1, 2),
-//     async (req, res) => {
-//         let userId = req.params.userId;
-//         console.log(userId);
-//         const reimbursement = await reimbursementDao.findByuserId(userId);
-//         res.json(reimbursement);
-//     }]);
-
 reimbursementsRouter.get('/author/userId/:userId',  [
     authMiddleware(1,2),async (req, res) => {
     const reim = await reimbursementDao.findByuserId(+req.params.userId);
