@@ -23,7 +23,7 @@ export class ReimbursementCardComponent extends React.PureComponent<IReimburseme
           <li className="list-group-item">amount: {reimbursements.amount }</li>
           <li className="list-group-item">date_submitted: {reimbursements.dateSubmitted }</li>
           <li className="list-group-item">date_resolved: {reimbursements.dateResolved }</li>
-          <li className="list-group-item">status: {reimbursements.status}</li>
+          {/* <li className="list-group-item">status: {reimbursements.status}</li> */}
           <li className="list-group-item">
             <button className="btn btn-danger">Delete</button>
             </li>

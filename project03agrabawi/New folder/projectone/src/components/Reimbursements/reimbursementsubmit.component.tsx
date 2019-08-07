@@ -133,11 +133,11 @@ export class ReimbursementSubmitComponent extends React.Component<any, IReimburs
                   <form className="form-signin" onSubmit={this.submit}>
                   <h1 className="h3 mb-3 font-weight-normal">Submit Reimbursement</h1>
            
-                  <label>Reimbursement Id</label>
+                  {/* <label>Reimbursement Id</label>
                   <input type="text" id="reimbursementId" name="reimbursementid"
                     className="form-control" placeholder="reimbursementId"
                     required value={this.state.reimbursementId} onChange={(e) => this.setReimbursementId(e)} />
-           
+            */}
                   <label>Author</label>   
                   <input type="text" id="author" name="Author"
                     className="form-control" placeholder="author"
